@@ -1,0 +1,15 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# lock
+yarn.lock
+package-lock.json
+
+# local env files
+.env
+.env.local
+.env.development
+.env.test.local
+.env.production.local
