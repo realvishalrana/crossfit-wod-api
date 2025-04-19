@@ -1,0 +1,41 @@
+### POST
+
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+    "email":"rah423u532343l@yopmail.com",
+    "password":"Test@123",
+    "firstName":"rahul",
+    "lastName":"adf"
+}
+
+### POST
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "email":"rah423u532343l@yopmail.com",
+    "password":"Test@123"
+}
+
+### GET ALL USER
+GET http://localhost:3000/user
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUwODMxNzMsImV4cCI6MTc0NTA4Njc3M30.W8sOZi3nZ93jWbdMTu6m0LawSelznA_CyJBUMF4se0Y
+
+### GET USER By Id
+GET http://localhost:3000/user/6803db1e7d7ff1671d0d36d4
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUwODMxNzMsImV4cCI6MTc0NTA4Njc3M30.W8sOZi3nZ93jWbdMTu6m0LawSelznA_CyJBUMF4se0Y
+
+
+### POST
+POST http://localhost:3000/user/logout
+Content-Type: application/json
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkNDMzZDViYjUzMjYwMmRkMzcwNiIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUwODE0MDQsImV4cCI6MTc0NTA4NTAwNH0.tHA0UeiN1o-AkE0MEuR8UYLP8tDr9-L6DM-h-ER30dM
+
+
+
+### PATCH
+DELETE  http://localhost:3000/user/6803d433d5bb532602dd3706
+Content-Type: application/json
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkNDMzZDViYjUzMjYwMmRkMzcwNiIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUwODE0MDQsImV4cCI6MTc0NTA4NTAwNH0.tHA0UeiN1o-AkE0MEuR8UYLP8tDr9-L6DM-h-ER30dM
