@@ -21,7 +21,7 @@ Content-Type: application/json
 
 ### GET ALL USER
 GET http://localhost:3000/user
-Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUwODMxNzMsImV4cCI6MTc0NTA4Njc3M30.W8sOZi3nZ93jWbdMTu6m0LawSelznA_CyJBUMF4se0Y
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUxMzQ4NDQsImV4cCI6MTc0NTEzODQ0NH0.Bq62bhcgFVSP1FqQDTF2Ghb0KwChIp7grH3QJR0kyV4
 
 ### GET USER By Id
 GET http://localhost:3000/user/6803db1e7d7ff1671d0d36d4
@@ -34,8 +34,102 @@ Content-Type: application/json
 Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkNDMzZDViYjUzMjYwMmRkMzcwNiIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUwODE0MDQsImV4cCI6MTc0NTA4NTAwNH0.tHA0UeiN1o-AkE0MEuR8UYLP8tDr9-L6DM-h-ER30dM
 
 
-
 ### PATCH
 DELETE  http://localhost:3000/user/6803d433d5bb532602dd3706
 Content-Type: application/json
 Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkNDMzZDViYjUzMjYwMmRkMzcwNiIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUwODE0MDQsImV4cCI6MTc0NTA4NTAwNH0.tHA0UeiN1o-AkE0MEuR8UYLP8tDr9-L6DM-h-ER30dM
+
+
+### POST
+
+POST http://localhost:3000/workout
+Content-Type: application/json
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUxNDE5ODAsImV4cCI6MTc0NTE0NTU4MH0.kEMBpIFZWEtYjMtf2UEa1n1QPb6ngt5McFrL0pKT0xQ
+
+{
+    "name": "5th",
+    "mode": "For Time",
+    "equipment": ["barbell", "rope"],
+    "exercises": [
+      "21 thrusters",
+      "12 rope climbs, 15 ft",
+      "15 thrusters",
+      "9 rope climbs, 15 ft",
+      "9 thrusters",
+      "6 rope climbs, 15 ft"
+    ],
+    "userId":"680291c514469837459f2359"
+}
+
+
+### POST
+
+PUT http://localhost:3000/workout/6804c10b75ad45e095782d5c
+Content-Type: application/json
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUxNDE5ODAsImV4cCI6MTc0NTE0NTU4MH0.kEMBpIFZWEtYjMtf2UEa1n1QPb6ngt5McFrL0pKT0xQ
+
+{
+    "name": "1 st",
+    "mode": "For Time",
+    "equipment": ["barbell", "rope"],
+    "exercises": [
+      "21 thrusters",
+      "12 rope climbs, 15 ft",
+      "15 thrusters",
+      "9 rope climbs, 15 ft",
+      "9 thrusters",
+      "6 rope climbs, 15 ft"
+    ],
+    "userId":"6803db1e7d7ff1671d0d36d4"
+}
+
+### 
+GET http://localhost:3000/workout/6804a66cbb03dfde0f6dc19c
+Content-Type: application/json
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUxNDE5ODAsImV4cCI6MTc0NTE0NTU4MH0.kEMBpIFZWEtYjMtf2UEa1n1QPb6ngt5McFrL0pKT0xQ
+
+### 
+GET http://localhost:3000/workout
+Content-Type: application/json
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDU1OTc1NjEsImV4cCI6MTc0NTYwMTE2MX0.7UalOpd4_5R7jmT78e_YsOLyUG5dl6GP_59rxWt9JJg
+
+### 
+DELETE http://localhost:3000/workout/6804a66cbb03dfde0f6dc19c
+Content-Type: application/json
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUxNDE5ODAsImV4cCI6MTc0NTE0NTU4MH0.kEMBpIFZWEtYjMtf2UEa1n1QPb6ngt5McFrL0pKT0xQ
+
+
+### GET training tips
+GET http://localhost:3000/training-tips
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDU1OTc1NjEsImV4cCI6MTc0NTYwMTE2MX0.7UalOpd4_5R7jmT78e_YsOLyUG5dl6GP_59rxWt9JJg
+
+###
+GET http://localhost:3000/training-tips/6804a66cbb03dfde0f6dc19c
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDU1OTc1NjEsImV4cCI6MTc0NTYwMTE2MX0.7UalOpd4_5R7jmT78e_YsOLyUG5dl6GP_59rxWt9JJg
+
+###
+POST http://localhost:3000/training-tips
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDU1OTc1NjEsImV4cCI6MTc0NTYwMTE2MX0.7UalOpd4_5R7jmT78e_YsOLyUG5dl6GP_59rxWt9JJg
+Content-Type: application/json
+
+{
+    "title": "1s32234234t training tips",
+    "description": "Fo23 4234234234r Time",
+    "wodId":"6804c2f08bdee837e2c10755",
+    "userId":["6803db1e7d7ff1671d0d36d4"]
+}
+
+
+###
+PUT http://localhost:3000/training-tips/680bb6e2f8d581f16be071dc
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDU1OTc1NjEsImV4cCI6MTc0NTYwMTE2MX0.7UalOpd4_5R7jmT78e_YsOLyUG5dl6GP_59rxWt9JJg
+Content-Type: application/json
+
+{
+    "title": "Changeing 324234234",
+    "description": "Fo23 4234234234r Time"
+}
+
+###
+DELETE http://localhost:3000/training-tips/680bb6e2f8d581f16be071dc
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDU1OTc1NjEsImV4cCI6MTc0NTYwMTE2MX0.7UalOpd4_5R7jmT78e_YsOLyUG5dl6GP_59rxWt9JJg

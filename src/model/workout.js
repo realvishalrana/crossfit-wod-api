@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // WOD (Workout of the Day)
-const WodScheama = mongoose.Schema(
+const WodScheama = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -15,13 +15,9 @@ const WodScheama = mongoose.Schema(
     exercises: {
       type: [String],
       required: true,
-      validate: {
-        validator: (arr) => arr.length > 0,
-        message: "At least one exercise is required",
-      },
     },
     equipment: {
-      type: String,
+      type: [String],
       required: true,
     },
     userId: {
@@ -36,6 +32,6 @@ const WodScheama = mongoose.Schema(
   }
 );
 
-const WodModal = mongoose.modal("Wod", WodScheama);
+const WodModal = mongoose.model("Wod", WodScheama);
 
 module.exports = WodModal;

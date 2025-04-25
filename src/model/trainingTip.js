@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
 
-const trainingTipScheam = new mongoose.Schema(
+const trainingTipSchema = new mongoose.Schema(
   {
-    context: {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
       type: String,
       required: true,
     },
@@ -11,12 +15,17 @@ const trainingTipScheam = new mongoose.Schema(
       ref: "Wod",
       required: true,
     },
+    userId: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "User",
+      required: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-const trainingTip = mongoose.model("trainingTip", trainingTipScheam);
+const trainingTip = mongoose.model("trainingTip", trainingTipSchema);
 
 module.exports = trainingTip;

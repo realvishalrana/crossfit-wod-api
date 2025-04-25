@@ -23,7 +23,7 @@ router.use(authMiddleware);
 router.get("/", getUser);
 router.get("/:id", getUserById);
 router.put("/:id", validate(userValidation.updateSchema), update);
-router.delete("/:id", validate(userValidation.deleteSchema), deleteUser);
+router.delete("/:id", deleteUser);
 router.post(
   "/reset-password",
   validate(userValidation.resetPasswordSchema),

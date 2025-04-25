@@ -5,7 +5,7 @@ const {
   logoutUser,
   getAllUser,
   getUserDataById,
-  resetPassword
+  resetPassword,
 } = require("../services/user");
 
 const getUser = async (req, res) => {
@@ -77,7 +77,6 @@ const update = (req, res) => {
 const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    console.log("userId: ", userId);
     const user = await deleteUserData(userId);
     res.status(200).json({
       data: user,
@@ -117,5 +116,5 @@ module.exports = {
   deleteUser,
   login,
   logout,
-  resetPasswordData
+  resetPasswordData,
 };

@@ -1,53 +1,47 @@
-const workoutService = require("../services/workoutService");
+const workoutService = require("../services/workout");
 
-const getAllWorkouts = (req, res) => {
-  // *** ADD ***
-  const allWorkouts = workoutService.getAllWorkouts();
-  res.send({ status: "OK", data: allWorkouts });
+const getAllWorkouts = async (req, res) => {
+  const allWorkouts = await workoutService.getAllWorkouts(req, res);
+  res.send({ status: "OK", data: allWorkouts, message: "Workouts found" });
 };
 
-const getOneWorkout = (req, res) => {
-  // *** ADD ***
-  const workout = workoutService.getOneWorkout();
-  res.send("Get an existing workout");
+const getOneWorkout = async (req, res) => {
+  const workout = await workoutService.getOneWorkout(req.params.workoutId);
+  res
+    .status(201)
+    .send({ status: "OK", data: workout, message: "Workout found" });
 };
 
-const createNewWorkout = (req, res) => {
-  const { body } = req;
-  // *** ADD ***
-  if (
-    !body.name ||
-    !body.mode ||
-    !body.equipment ||
-    !body.exercises ||
-    !body.trainerTips
-  ) {
-    return;
-  }
-  // *** ADD ***
-  const newWorkout = {
-    name: body.name,
-    mode: body.mode,
-    equipment: body.equipment,
-    exercises: body.exercises,
-    trainerTips: body.trainerTips,
-  };
-  // *** ADD ***
-  const createdWorkout = workoutService.createNewWorkout(newWorkout);
-  // *** ADD ***
-  res.status(201).send({ status: "OK", data: createdWorkout });
+const createNewWorkout = async (req, res) => {
+  const createdWorkout = await workoutService.createNewWorkout(req.body);
+  res.status(201).send({
+    status: "OK",
+    data: createdWorkout,
+    message: "Workout created successfully",
+  });
 };
 
-const updateOneWorkout = (req, res) => {
-  // *** ADD ***
-  const updatedWorkout = workoutService.updateOneWorkout();
-  res.send("Update an existing workout");
+const updateOneWorkout = async (req, res) => {
+  const updatedWorkout = await workoutService.updateOneWorkout(
+    req.params.workoutId,
+    req.body
+  );
+  res.status(201).send({
+    status: "OK",
+    data: updatedWorkout,
+    message: "Workout updated successfully",
+  });
 };
 
-const deleteOneWorkout = (req, res) => {
-  // *** ADD ***
-  workoutService.deleteOneWorkout();
-  res.send("Delete an existing workout");
+const deleteOneWorkout = async (req, res) => {
+  const deleteWorkOut = await workoutService.deleteOneWorkout(
+    req.params.workoutId
+  );
+  res.status(201).send({
+    status: "OK",
+    data: deleteWorkOut,
+    message: "Workout deleted successfully",
+  });
 };
 
 module.exports = {
