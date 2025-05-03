@@ -2,11 +2,28 @@ const userModel = require("../model/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const generateToken = (payload) => {
+// Function to generate Access Token
+const generateAccessToken = (payload) => {
   const secretKey = process.env.JWT_SECRET;
-  const options = { expiresIn: "1h" };
-
+  const options = { expiresIn: "15m" }; // Short-lived access token
   return jwt.sign(payload, secretKey, options);
+};
+
+// Function to generate Refresh Token
+const generateRefreshToken = (payload) => {
+  const secretKey = process.env.JWT_REFRESH_SECRET;
+  const options = { expiresIn: "7d" }; // Long-lived refresh token
+  return jwt.sign(payload, secretKey, options);
+};
+
+// Function to verify Refresh Token
+const verifyRefreshToken = async (token) => {
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
+    return { userId: decoded.id };
+  } catch (error) {
+    throw new Error("Invalid refresh token");
+  }
 };
 
 const getAllUser = async () => {
@@ -16,6 +33,9 @@ const getAllUser = async () => {
 
 const getUserDataById = async (userId) => {
   const user = await userModel.findById(userId).select("-password");
+  if (!user) {
+    throw new Error("User not found");
+  }
   return user;
 };
 
@@ -53,14 +73,22 @@ const loginUser = async ({ email, password }) => {
     throw new Error("Invalid credentials");
   }
 
-  const token = generateToken({ id: user._id, email: user.email });
+  const accessToken = generateAccessToken({ id: user._id, email: user.email });
+  const refreshToken = generateRefreshToken({
+    id: user._id,
+    email: user.email,
+  });
+
+  user.refreshToken = refreshToken; // Store refresh token on user model (NOT RECOMMENDED FOR PRODUCTION)
+  await user.save();
 
   return {
     user: {
       id: user._id,
       email: user.email,
     },
-    token,
+    accessToken,
+    refreshToken,
   };
 };
 
@@ -83,24 +111,15 @@ const deleteUserData = async (userId) => {
   return user;
 };
 
-const logoutUser = async (token) => {
-  if (!token) {
-    throw new Error("No token provided");
-  }
+const logoutUser = async (userId) => {
+  const user = await userModel.findById(userId);
 
-  let verifiedJwt;
-  try {
-    verifiedJwt = jwt.verify(token, process.env.JWT_SECRET);
-  } catch (err) {
-    throw new Error("Invalid token");
-  }
-
-  const user = await userModel.findById(verifiedJwt.id);
   if (!user) {
     throw new Error("User not found");
   }
 
-  user.token = null;
+  // Invalidate refresh token by setting it to null or removing it
+  user.refreshToken = null;
   await user.save();
 };
 

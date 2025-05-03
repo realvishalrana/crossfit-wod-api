@@ -8,6 +8,7 @@ const {
   getUser,
   getUserById,
   resetPasswordData,
+  refreshToken
 } = require("../controllers/user");
 
 const router = expres.Router();
@@ -17,6 +18,8 @@ const userValidation = require("../utils/validation/user");
 
 router.post("/", validate(userValidation.userSchema), create);
 router.post("/login", validate(userValidation.loginSchema), login);
+router.post("/refresh-token", refreshToken);
+
 
 router.use(authMiddleware);
 
