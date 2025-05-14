@@ -6,6 +6,7 @@ const workoutRoute = require("./routes/workout");
 const trainingTipRoute = require("./routes/trainingTip");
 const utils = require("./utils/messages");
 const app = express();
+const { connectRedis } = require("./config/redis");
 
 const PORT = process.env.PORT || 3000;
 
@@ -19,6 +20,12 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   return utils.failureResponse(err, res, 500);
 });
+
+try {
+  connectRedis();
+} catch (error) {
+  console.log(error);
+}
 
 mongoose
   .connect(process.env.DB_URL)

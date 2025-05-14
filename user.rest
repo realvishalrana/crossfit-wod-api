@@ -4,7 +4,7 @@ POST http://localhost:3000/user
 Content-Type: application/json
 
 {
-    "email":"rah442332234423u532343l@yopmail.com",
+    "email":"rahul1@yopmail.com",
     "password":"Test@123",
     "firstName":"rahul",
     "lastName":"adf"
@@ -15,24 +15,22 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-    "email":"rah423u532343l@yopmail.com",
+    "email":"rahul1@yopmail.com",
     "password":"Test@123"
 }
 
 ### GET ALL USER
 GET http://localhost:3000/user
-Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDYyNzgyMDIsImV4cCI6MTc0NjI3OTEwMn0.bicifIEBCuJ7pBjUL8KtvbgvKgffNREEdLMHM0JQAXk
-
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjRhYjlmZTAzMDc4MzBiZTg3Yjk1MCIsImVtYWlsIjoicmFodWwxQHlvcG1haWwuY29tIiwiaWF0IjoxNzQ3MjM2MDQwLCJleHAiOjE3NDcyMzY5NDB9.E8lhQtKT5JHrQW-YrIycoEtZYaARKBnxrcnmZL15Bjk
 ### GET USER By Id
 GET http://localhost:3000/user/6803db1e7d7ff1671d0d36d4
-Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDUwODMxNzMsImV4cCI6MTc0NTA4Njc3M30.W8sOZi3nZ93jWbdMTu6m0LawSelznA_CyJBUMF4se0Y
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjRhYjlmZTAzMDc4MzBiZTg3Yjk1MCIsImVtYWlsIjoicmFodWwxQHlvcG1haWwuY29tIiwiaWF0IjoxNzQ3MjM1NTM2LCJleHAiOjE3NDcyMzY0MzZ9.eyNcYWZY-UOhB1mwhBYYjQpe4ttbMUGkCEK1tD9oXBU
 
 
 ### POST
 POST http://localhost:3000/user/logout
 Content-Type: application/json
-Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDNkYjFlN2Q3ZmYxNjcxZDBkMzZkNCIsImVtYWlsIjoicmFoNDIzdTUzMjM0M2xAeW9wbWFpbC5jb20iLCJpYXQiOjE3NDYyNzgyMDIsImV4cCI6MTc0NjI3OTEwMn0.bicifIEBCuJ7pBjUL8KtvbgvKgffNREEdLMHM0JQAXk
-
+Authorization: jwt eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjRhYjlmZTAzMDc4MzBiZTg3Yjk1MCIsImVtYWlsIjoicmFodWwxQHlvcG1haWwuY29tIiwiaWF0IjoxNzQ3MjM1NTM2LCJleHAiOjE3NDcyMzY0MzZ9.eyNcYWZY-UOhB1mwhBYYjQpe4ttbMUGkCEK1tD9oXBU
 ### PATCH
 DELETE  http://localhost:3000/user/6803d433d5bb532602dd3706
 Content-Type: application/json

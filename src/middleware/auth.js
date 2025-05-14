@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../model/user");
+const { redisClient } = require("../config/redis");
 
 const authMiddleware = async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
@@ -8,6 +9,12 @@ const authMiddleware = async (req, res, next) => {
   }
 
   try {
+    const isBlacklisted = await redisClient.get(`blacklist:${token}`);
+    if (isBlacklisted) {
+      return res
+        .status(401)
+        .json({ message: "Unauthorized: Token blacklisted" });
+    }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await userModel.findById(decoded.id);
     if (!user) {
