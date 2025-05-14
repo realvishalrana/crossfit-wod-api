@@ -1,6 +1,7 @@
 const userModel = require("../model/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { redisClient } = require("../config/redis");
 
 // Function to generate Access Token
 const generateAccessToken = (payload) => {
@@ -74,13 +75,16 @@ const loginUser = async ({ email, password }) => {
   }
 
   const accessToken = generateAccessToken({ id: user._id, email: user.email });
-  const refreshToken = generateRefreshToken({
-    id: user._id,
-    email: user.email,
-  });
+  // const refreshToken = generateRefreshToken({
+  //   id: user._id,
+  //   email: user.email,
+  // });
 
-  user.refreshToken = refreshToken; // Store refresh token on user model (NOT RECOMMENDED FOR PRODUCTION)
+  // user.refreshToken = refreshToken;
   await user.save();
+
+  // const refreshTokenKey = `refresh_token:${user.email}:${refreshToken}`;
+  // await redisClient.set(refreshTokenKey, "valid", { EX: 60 * 60 * 24 * 7 }); // Store for 7 days
 
   return {
     user: {
@@ -88,7 +92,7 @@ const loginUser = async ({ email, password }) => {
       email: user.email,
     },
     accessToken,
-    refreshToken,
+    // refreshToken,
   };
 };
 
@@ -111,18 +115,30 @@ const deleteUserData = async (userId) => {
   return user;
 };
 
-const logoutUser = async (userId) => {
-  const user = await userModel.findById(userId);
+const logoutUser = async (req) => {
+  const user = await userModel.findById(req.user._id);
 
   if (!user) {
     throw new Error("User not found");
   }
 
-  // Invalidate refresh token by setting it to null or removing it
-  user.refreshToken = null;
-  await user.save();
-};
+  const decodedToken = jwt.decode(req.token);
 
+  if (!decodedToken || !decodedToken.exp) {
+    throw new Error("Invalid token for logout");
+  }
+
+  /* ttl used to calculate the remaining time of the token */
+  const ttl = decodedToken.exp - Math.floor(Date.now() / 1000);
+
+  if (ttl > 0) {
+    await redisClient.setEx(`blacklist:${req.token}`, ttl, "blacklisted");
+  } else {
+    console.log("Token already expired");
+  }
+
+  return true;
+};
 const resetPassword = async (userId, newPassword) => {
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(newPassword, saltRounds);

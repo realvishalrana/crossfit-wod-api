@@ -22,9 +22,9 @@ const userSchema = new mongoose.Schema(
     fullName: {
       type: String,
     },
-    refreshToken: {
-      type: String,
-    },
+    // refreshToken: {
+    //   type: String,
+    // },
   },
   {
     timestamps: true,
